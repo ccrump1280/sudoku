@@ -24,10 +24,8 @@ export default class Cell {
         this.isSelected = false;
     }
     public updateNotes(note: number) {
-        if (!this.isFixed) {
-            const noteIndex = this.notes.indexOf(note);
-            noteIndex == -1 ? this.notes.push(note) : this.notes.splice(noteIndex, 1);
-        }
+        const noteIndex = this.notes.indexOf(note);
+        noteIndex == -1 ? this.notes.push(note) : this.notes.splice(noteIndex, 1);
     }
 
     public clearNotes() {

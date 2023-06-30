@@ -41,15 +41,6 @@ test('updating unfixed cell notes with value already present should remove the v
     expect(cell.notes.includes(3)).toBe(false);
 });
 
-test('updating fixed cell notes should do nothing', () => {
-    //arrange
-    const cell = randomCell(true);
-    //act
-    cell.updateNotes(Math.floor(Math.random() * 9 + 1));
-    //assert
-    expect(cell.notes.length).toBe(0);
-});
-
 test('clear notes should result in notes being empty', () => {
     //arrange
     const cell = randomCell(false);

@@ -1,11 +1,15 @@
 import './App.css'
+import {ChakraProvider} from "@chakra-ui/react"
+import SudokuBoard from './components/sudokuBoard'
 
 function App() {
 
   return (
-    <div data-testid="App">
-      
-    </div>
+    <ChakraProvider>
+      <div data-testid="App">
+        <SudokuBoard />
+      </div>
+    </ChakraProvider>
   )
 }
 

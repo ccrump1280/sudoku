@@ -10,7 +10,7 @@ export default function boardMaskerByDifficulty(board: number[][], difficulty: s
     }
     const randomIndices = shuffle(allIndices);
     if (difficulty == "beginner") {
-        for (let i=0; i < 80; i++) {
+        for (let i=0; i < 50; i++) {
             randomIndices.pop();
         }
     }else if (difficulty == "easy") {

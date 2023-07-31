@@ -112,7 +112,7 @@ const GameControls: React.FC = () => {
                 <Radio value='expert'>Expert</Radio>
             </RadioGroup>
             <Button colorScheme='orange' m="1rem" onClick={() => actions.newGame(difficulty)}>New Game</Button>
-            <Button colorScheme='orange' marginTop={1} onClick={() => actions.shuffleBoard()}>Shuffle</Button>
+            <Button colorScheme='orange' m="1rem" onClick={() => actions.shuffleBoard()}>Shuffle</Button>
             <Text color="white">Stuck on a puzzle? Try shuffling for a new perspective!</Text>
         </ Box>
     )

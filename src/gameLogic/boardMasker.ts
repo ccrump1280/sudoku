@@ -2,19 +2,19 @@ import solveSudoku from "./solver"
 
 export default function boardMaskerByDifficulty(board: number[][], difficulty: string) {
     const boardDeepCopy = JSON.parse(JSON.stringify(board));
-    let allIndices = []
+    const allIndices = []
     for (let i=0; i < 9; i++) {
         for (let j=0; j < 9; j++) {
             allIndices.push([i, j]);
         }
     }
-    let randomIndices = shuffle(allIndices);
+    const randomIndices = shuffle(allIndices);
     if (difficulty == "beginner") {
-        for (let i=0; i < 42; i++) {
+        for (let i=0; i < 80; i++) {
             randomIndices.pop();
         }
     }else if (difficulty == "easy") {
-        for (let i=0; i < 37; i++) {
+        for (let i=0; i < 39; i++) {
             randomIndices.pop();
         }
     }else if (difficulty == "medium") {
@@ -22,7 +22,7 @@ export default function boardMaskerByDifficulty(board: number[][], difficulty: s
             randomIndices.pop();
         }
     }else if (difficulty == "hard") {
-        for (let i=0; i < 27; i++) {
+        for (let i=0; i < 25; i++) {
             randomIndices.pop();
         }
     }

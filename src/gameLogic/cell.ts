@@ -8,7 +8,7 @@ export default class Cell {
     public block: number;
     public solutionValue: number;
     public notes: number[];
-    public highlightType: ("none" | "primary" | "secondary");
+    public highlightType: ("none" | "primary" | "secondary" | "tertiary");
     public isFixed: boolean;
     public isSelected: boolean;
 
@@ -32,7 +32,7 @@ export default class Cell {
         this.notes = [];
     }
 
-    public setHighlightType(type: ("none" | "primary" | "secondary")) {
+    public setHighlightType(type: ("none" | "primary" | "secondary" | "tertiary")) {
         this.highlightType = type;
     }
 }

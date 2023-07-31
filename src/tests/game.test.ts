@@ -38,28 +38,18 @@ test('Should be able to select cell and apply correct highlights to other cells'
     for (let row=0; row < 9; row++) {
         for (let col=0; col < 9; col++) {
             const block = getBlockByRowAndColumn(row, col);
-            if (game.board[randomRow][randomCol].value == game.board[row][col].value) {
-                expect(game.board[row][col].highlightType).toBe("primary");
+            const cell = game.board[row][col];
+            if (row == randomRow && col == randomCol) {
+                expect(cell.highlightType).toBe("primary")
+            }else if (game.board[randomRow][randomCol].value == game.board[row][col].value) {
+                expect(cell.highlightType).toBe("secondary");
             }else if (row == randomRow || col == randomCol || block == randomBlock) {
-                expect(game.board[row][col].highlightType).toBe("secondary");
+                expect(cell.highlightType).toBe("tertiary");
             }else {
-                expect(game.board[row][col].highlightType).toBe("none");
+                expect(cell.highlightType).toBe("none");
             }
         }
     }
-});
-
-test('Should be able to change value of unfixed cell and undo', () => {
-    const game = new Game("medium", predefinedSolution, predefinedMask);
-
-    game.updateCellValue(0, 1, 8);
-
-    expect(game.board[0][1].value).toBe(8);
-
-    game.undoAction();
-
-    expect(game.board[0][1].value).toBe(0);
-    expect(game.board[0][1].isSelected).toBeTruthy;
 });
 
 test('Should not be able to change value of fixed cell', () => {

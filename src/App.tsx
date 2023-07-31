@@ -1,14 +1,18 @@
 import './App.css'
 import {ChakraProvider} from "@chakra-ui/react"
 import SudokuBoard from './components/sudokuBoard'
+import { Box } from '@chakra-ui/react'
+import GameControls from './components/gameControls'
+import Timer from './components/timer'
 
 function App() {
-
   return (
     <ChakraProvider>
-      <div data-testid="App">
+      <Box data-testid="App" id="App">
+        <Timer />
         <SudokuBoard />
-      </div>
+        <GameControls />
+      </Box>
     </ChakraProvider>
   )
 }

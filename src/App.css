@@ -1,7 +1,83 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  min-height: 100vh;
+  background: rgb(47,93,127);
+  background: linear-gradient(0deg, rgba(47,93,127,1) 0%, rgba(123,77,127,1) 39%);
 }
-
+svg:hover {
+  cursor: pointer;
+}
+.board {
+  width: 80vw;
+  min-width: 200px;
+  max-width: 500px;
+  aspect-ratio: 1;
+  margin: auto;
+  -webkit-box-shadow: 7px 7px 10px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 7px 7px 10px 0px rgba(0,0,0,0.75);
+  box-shadow: 7px 7px 10px 0px rgba(0,0,0,0.75);
+  transition: filter 300ms ease-in;
+}
+.board-blurred {
+  opacity: 95%;
+  filter: blur(7px);
+}
+.board:hover {
+  cursor: pointer;
+}
+.button-digit {
+  width: 40px;
+}
+.cell {
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+  outline: 1px solid #C9E1E8;
+}
+.cell-highlight-none {
+  background-color: white;
+}
+.cell-highlight-primary {
+  background-color: #FEA679;
+}
+.cell-highlight-secondary {
+  background-color: #FFD1A3;
+}
+.cell-highlight-tertiary {
+  background-color: #FEF3E7;
+}
+.cell-correct {
+  color: #228B22;
+}
+.cell-incorrect {
+  color: #B22222;
+}
+.cell-fixed {
+  color: black;
+}
+.difficulty label {
+  margin-right: 10px;
+}
+#finished-game-banner {
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 85%;
+  max-width: 700px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+#game-controls {
+  max-width: 500px;
+  margin: 1rem auto;
+}
+#loader-wrapper {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

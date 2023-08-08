@@ -27,9 +27,6 @@ svg:hover {
 .board:hover {
   cursor: pointer;
 }
-.button-digit {
-  width: 40px;
-}
 .cell {
   justify-content: center;
   align-items: center;
@@ -69,10 +66,9 @@ svg:hover {
   max-width: 700px;
   transform: translate(-50%, -50%);
   z-index: 2;
-}
-#game-controls {
-  max-width: 500px;
-  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #loader-wrapper {
   position: absolute;

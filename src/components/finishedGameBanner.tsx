@@ -1,5 +1,5 @@
 import { Box, Button, Heading, Text, Flex, Select } from "@chakra-ui/react"
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import Particles from "react-particles"
 import type { Engine } from "tsparticles-engine"
 import { loadConfettiPreset } from "tsparticles-preset-confetti"
@@ -23,22 +23,26 @@ const FinishedGameBanner: React.FC = () => {
             }
         }
     }
-    actions.setMessage(generateMessage(state.timeElapsed));
+    useEffect(()=> {
+        actions.setMessage(generateMessage(state.timeElapsed));
+    }, [])
     return (
-        <Box id="finished-game-banner" borderRadius={10} maxH={["270px", "300px"]}>
+        <Box id="finished-game-banner" borderRadius={10} height={["300px", "270px"]}>
+            <Box>
             <Particles options={particlesConfig} init={particlesInit} />
             <Heading as="h1" size= {["md", "lg"]} mt="1rem">Congratulations!</Heading>
             <Text m="1rem" fontSize={["14px", "20px"]}>You completed the {state.game.difficulty} puzzle in {formatTime(state.timeElapsed)} <br/> {state.finishedGameMessage}</Text>
-            <Flex justifyContent="center" display={["block", "flex"]} mb="1rem">
-                <Button colorScheme='orange' mb="1rem" onClick={() => actions.newGame(difficulty)}>New Game</Button>
-                <Select width="150px" m={["auto", "0 1rem"]} borderColor="purple" bg="#CBC3E3" value={difficulty} onChange={(e) => isDifficulty(e.target.value) ? setDifficulty(e.target.value): undefined}>
-                    <option value="beginner">Beginner</option>
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                    <option value="expert">Expert</option>
-                </Select>
-            </Flex>
+                <Flex justifyContent="center" display={["block", "flex"]} mb="1rem">
+                    <Button colorScheme='orange' mb="1rem" onClick={() => actions.newGame(difficulty)}>New Game</Button>
+                    <Select width="150px" m={["auto", "0 1rem"]} borderColor="purple" bg="#CBC3E3" value={difficulty} onChange={(e) => isDifficulty(e.target.value) ? setDifficulty(e.target.value): undefined}>
+                        <option value="beginner">Beginner</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                        <option value="expert">Expert</option>
+                    </Select>
+                </Flex>
+            </Box>
         </Box>
     )
 }
@@ -60,7 +64,7 @@ export const generateMessage = (timeElapsed: number) => {
         messagesArray = COMPLETED_PUZZLE_MESSAGES[15];
     }else if (timeElapsed <= 60*30) {
         messagesArray = COMPLETED_PUZZLE_MESSAGES[30];
-    }else if (timeElapsed <= 60*60) {
+    }else if (timeElapsed <= 60*45) {
         messagesArray = COMPLETED_PUZZLE_MESSAGES[45];
     }else {
         messagesArray = COMPLETED_PUZZLE_MESSAGES[46];

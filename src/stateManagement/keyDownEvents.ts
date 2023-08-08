@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useCallback } from 'react';
+import { handleValueClick } from './onClickHandlers';
+import { defaultRegistry } from 'react-sweet-state';
+import { Store } from './gameState';
 
 type GenericObject = {[key: string]: true | false}
 
-
+const gameStore = defaultRegistry.getStore(Store);
 
 export const useKeyPress = (func: (event: KeyboardEvent)=>void, target = window) => {
   // persistent "store" to track what keys are being pressed
@@ -42,3 +45,58 @@ export const useKeyPress = (func: (event: KeyboardEvent)=>void, target = window)
     };
   }, [target, onKeyDown, onKeyUp]);
 };
+
+export const keydownHandler = (event: KeyboardEvent) => {
+  const state = gameStore.storeState.getState();
+  const actions = gameStore.actions;
+  const selectedCell = state.game.selectedCell;
+  if (state.isPaused && event.key != 'p') {
+      return;
+  }
+  switch (event.key) {
+      case 'Shift':
+        actions.toggleNotes();
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        if (selectedCell) {
+            if (selectedCell.row == 0) {
+                actions.selectCell(8, selectedCell.col);
+            }else {
+                actions.selectCell(selectedCell.row-1, selectedCell.col);
+            }
+        }else {
+          actions.selectCell(0, 0);
+        }
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        selectedCell ? actions.selectCell((selectedCell.row + 1) % 9, selectedCell.col): actions.selectCell(0, 0);
+        break;
+      case 'ArrowLeft':
+        if (selectedCell) {
+            if (selectedCell.col == 0) {
+                actions.selectCell(selectedCell.row, 8);
+            }else {
+                actions.selectCell(selectedCell.row, selectedCell.col-1);
+            }
+        }else {
+          actions.selectCell(0, 0);
+        }
+        break;
+      case 'ArrowRight':
+        selectedCell ? actions.selectCell(selectedCell.row, (selectedCell.col+1) % 9): actions.selectCell(0, 0);
+        break;
+      case 'Backspace':
+        selectedCell ? actions.eraseCell(selectedCell.row, selectedCell.col): null;
+        break;
+      case 'Delete':
+        actions.undoAction();
+        break;
+      case 'p':
+        actions.toggleTimer();
+  }
+  if (/^[1-9]$/.test(event.key)) {
+      handleValueClick(Number(event.key));
+  }
+}

@@ -1,4 +1,4 @@
-import solveSudoku from "./solver"
+import solveSudoku from "./solver.js"
 
 export default function boardMaskerByDifficulty(board: number[][], difficulty: string) {
     const boardDeepCopy = JSON.parse(JSON.stringify(board));

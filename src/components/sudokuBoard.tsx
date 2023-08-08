@@ -19,7 +19,7 @@ const SudokuBoard:React.FC = () => {
         {state.isLoading ? <ClipLoader /> : null}
         {state.isPaused ? <BsPlayCircleFill color="orange" size="3rem" onClick={() => actions.toggleTimer()}/> : null}
       </Box>
-      <SimpleGrid fontSize={"clamp(14px, 4vw, 22px)"} columns={3}  className={className}>
+      <SimpleGrid fontSize={"clamp(14px, 4vw, 22px)"} columns={3}  className={className} width='100%'>
         {[...Array(9)].map((_e, block) => {
           return (
             <SimpleGrid key={block} columns={3} spacing={0} outline={"2px solid #144F61"}>

@@ -138,16 +138,16 @@ const Store = createStore({
             },
         setMessage: 
             (message: string) => 
-            ({getState, setState}) =>{
-                if (getState().finishedGameMessage == undefined) {
-                    setState({
-                        finishedGameMessage: message
-                    });
-                }
+            ({setState}) =>{
+                setState({
+                    finishedGameMessage: message
+                });
             }
     },
     // optional, unique, mostly used for easy debugging
     name: 'game',
   });
   
-  export const useGameState = createHook(Store);
+  const useGameState = createHook(Store);
+
+  export {useGameState, Store}
